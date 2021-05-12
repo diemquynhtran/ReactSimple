@@ -1,5 +1,5 @@
 import {createStore, combineReducers} from 'redux';
-import { Comments } from './comment';
+import { Comments } from './comments';
 import { Dishes } from './dishes';
 import { Leaders } from './leader';
 import { Promotions } from './promotions';
