@@ -14,6 +14,7 @@ class CommentForm extends Component {
         super(props);
         this.state = {
             isModalOpen: false
+            
         }
         this.toggleModal = this.toggleModal.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -107,11 +108,12 @@ function RenderDish({ dish }) {
 
 function RenderComments({comments, addComment, dishId }) {
     if (comments != null) {
+        
         return (
             <div className="container">
                 <h4>Comments</h4>
                 <ListGroup>
-                {comments.comments.map((comment) => (
+                {comments.map((comment) => (
                         <ListGroupItemText>
                             <p>{comment.comment}</p>
                             <p>
