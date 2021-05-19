@@ -3,6 +3,7 @@ import { Card, CardBody, CardImg, CardText, CardTitle, ListGroup, ListGroupItemT
 import { Link } from 'react-router-dom';
 import { Control, Errors, LocalForm } from 'react-redux-form';
 import {Loading} from './LoadingComponent';
+import { baseUrl } from '../shared/baseURL';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -91,7 +92,7 @@ function RenderDish({ dish }) {
     if (dish != null) {
         return (
             <Card>
-                <CardImg top src={dish.image} alt={dish.name} />
+                <CardImg top src={baseUrl+ dish.image} alt={dish.name} />
                 <CardBody>
                     <CardTitle>{dish.name}</CardTitle>
                     <CardText>{dish.description}</CardText>
@@ -104,20 +105,21 @@ function RenderDish({ dish }) {
     }
 }
 
-function RenderComments({ comments, addComment, dishId }) {
+function RenderComments({comments, addComment, dishId }) {
     if (comments != null) {
         return (
             <div className="container">
                 <h4>Comments</h4>
                 <ListGroup>
-                    {comments.map((comment) => (
+                {comments.comments.map((comment) => (
                         <ListGroupItemText>
                             <p>{comment.comment}</p>
                             <p>
                                 --{comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(comment.date)))}
                             </p>
                         </ListGroupItemText>
-                    ))}
+                    ))
+                    }
                     <CommentForm addComment={addComment} dishId={dishId} />
                 </ListGroup>
             </div>
